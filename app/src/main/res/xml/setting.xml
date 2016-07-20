@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Normal Setting">
+        <EditTextPreference
+            android:dialogTitle="输入文件名称"
+            android:inputType="text"
+            android:key="log_file_name"
+            android:defaultValue="xxxx_nmea_"
+            android:title="Log File Name"
+            />
+        <EditTextPreference
+            android:dialogTitle="输入TTFF测试次数"
+            android:inputType="number"
+            android:key="repeat_count"
+            android:defaultValue="20"
+            android:title="Repeat Count"
+            />
+        <EditTextPreference
+            android:dialogTitle="输入TTFF间隔时间"
+            android:inputType="number"
+            android:key="interval"
+            android:defaultValue="50"
+            android:title="Interval"
+            />
+        <EditTextPreference
+            android:dialogTitle="输入Latitude"
+            android:inputType="numberDecimal"
+            android:key="latitude"
+            android:defaultValue="0.0"
+            android:title="Latitude"
+            />
+        <EditTextPreference
+            android:dialogTitle="输入Longitude"
+            android:inputType="numberDecimal"
+            android:key="longitude"
+            android:defaultValue="0.0"
+            android:title="Longitude"
+            />
+        <CheckBoxPreference
+            android:key="gps_plus"
+            android:title="GPS XTRA"
+            android:summary="OFF"
+            android:defaultValue="false"
+            />
+        <CheckBoxPreference
+            android:key="gps_log"
+            android:title="GPS log"
+            android:summary="ON"
+            android:saveEnabled="true"
+            android:defaultValue="true"
+            />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="TTFF Setting">
+        <ListPreference
+            android:dialogTitle="Choose a Mode"
+            android:entries="@array/operation_mode"
+            android:entryValues="@array/operation_mode"
+            android:key="operation_mode"
+            android:defaultValue="STANDALONE"
+            android:title="Operation Mode"/>
+
+        <Preference
+            android:key="wifi_switch"
+            android:summary="跳转至WiFi设置"
+            android:title="WiFi设置">
+            <intent android:action="android.settings.WIFI_SETTINGS"/>
+
+        </Preference>
+
+        <Preference
+            android:key="net_switch"
+            android:summary="跳转至移动网络设置"
+            android:title="移动网络设置">
+            <intent android:action="android.settings.DATA_ROAMING_SETTINGS"/>
+
+        </Preference>
+
+        <ListPreference
+            android:dialogTitle="Choose a City"
+            android:entries="@array/start_mode"
+            android:entryValues="@array/start_mode"
+            android:key="start_mode"
+            android:defaultValue="Hot Start"
+            android:title="Start Mode"/>
+
+        <EditTextPreference
+            android:dialogTitle="输入TTFF测试Timeout"
+            android:inputType="number"
+            android:key="timeout"
+            android:defaultValue="180"
+            android:title="Timeout"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="SUPL Setting">
+        <EditTextPreference
+            android:dialogTitle="输入Server"
+            android:inputType="number"
+            android:key="supl_server"
+            android:defaultValue="supl.google.com"
+            android:title="Server"
+            />
+        <EditTextPreference
+            android:dialogTitle="输入Server Port"
+            android:inputType="number"
+            android:key="supl_server_port"
+            android:defaultValue="7276"
+            android:title="Server Port"
+            />
+        <Preference
+            android:key="nmea_parse"
+            android:summary="NMEA文件GSV解析"
+            android:title="文件解析">
+            <intent
+                android:targetClass="com.zeusis.gpstools.ParseActivity"
+                android:targetPackage="com.zeusis.gpstools">
+
+            </intent>
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>
