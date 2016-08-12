@@ -186,7 +186,7 @@ public class TrackingService extends Service {
         public void onNmeaReceived(long timestamp, String nmea) {
 
             try {
-                mFos.write(nmea.getBytes());
+                mFos.write((FileUtils.formatTime(System.currentTimeMillis()) + "\t" + nmea).getBytes());
                 mFos.flush();
             } catch (IOException e) {
                 e.printStackTrace();

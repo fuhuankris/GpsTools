@@ -208,22 +208,8 @@ public class TtffService extends Service {
                         e.printStackTrace();
                         Log.d(TAG, e.getMessage());
                     }
-//                    } else if (mTtffTestCount > 67) {
-//                        writeStr2File(mTtffFos, "TTFF(s)," + String.format("%3.2f", (float) mTtffList.get(0) / 1000) + "," + String.format("%3.2f", (float) mTtffList.get(mTtffList.size() - 1) / 1000) + "," + String.format("%3.2f", (float) getAvgTtffI(mTtffList) / 1000) + "," + String.format("%3.2f", (float) mTtffList.get(24) / 1000) + "," + String.format("%3.2f", (float) mTtffList.get(34) / 1000) + ",-\n");
-//                        writeStr2File(mTtffFos, "ERROR(m)," + mErrorList.get(0) + "," + mErrorList.get(mErrorList.size() - 1) + "," + getAvgTtff(mErrorList) + "," + mErrorList.get(24) + "," + mErrorList.get(34) + ",-\n");
-//                    } else if (mTtffTestCount > 49) {
-//                        writeStr2File(mTtffFos, "TTFF(s)," + String.format("%3.2f", (float) mTtffList.get(0) / 1000) + "," + String.format("%3.2f", (float) mTtffList.get(mTtffList.size() - 1) / 1000) + "," + String.format("%3.2f", (float) getAvgTtffI(mTtffList) / 1000) + "," + String.format("%3.2f", (float) mTtffList.get(24) / 1000) + ",-,-\n");
-//                        writeStr2File(mTtffFos, "ERROR(m)," + mErrorList.get(0) + "," + mErrorList.get(mErrorList.size() - 1) + "," + getAvgTtff(mErrorList) + "," + mErrorList.get(24) + ",-,-\n");
-//                    } else {
-//                        writeStr2File(mTtffFos, "TTFF(s)," + String.format("%3.2f", (float) mTtffList.get(0) / 1000) + "," + String.format("%3.2f", (float) mTtffList.get(mTtffList.size() - 1) / 1000) + "," + String.format("%3.2f", (float) getAvgTtffI(mTtffList) / 1000) + ",-,-,-\n");
-//                        writeStr2File(mTtffFos, "ERROR(m)," + mErrorList.get(0) + "," + mErrorList.get(mErrorList.size() - 1) + "," + getAvgTtff(mErrorList) + ",-,-,-\n");
-//                    }
-                    //mTtffList;
                     sleepTime(1000);
-                    //Message endMessage = mFragmentHandler.obtainMessage();
                     mFragmentHandler.sendEmptyMessage(TEST_END);
-                    //mStartButton.setEnabled(true);
-                    //mStopButton.setEnabled(false);
                     FileUtils.closeFos(mTtffFos);
                     FileUtils.closeFos(mNmeaFos);
                     stopSelf();
@@ -245,7 +231,6 @@ public class TtffService extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    //Latitude(), location.getLongitude()
     private List<Double> mLatitudeList;
     private List<Double> mLongitudeList;
 
@@ -454,7 +439,7 @@ public class TtffService extends Service {
 
         @Override
         public void onNmeaReceived(long timestamp, String nmea) {
-            writeStr2File(mNmeaFos, nmea);
+            writeStr2File(mNmeaFos, FileUtils.formatTime(System.currentTimeMillis()) + "\t" + nmea);
         }
     };
 
